@@ -10,8 +10,8 @@ RUN make build
 
 FROM alpine:3.10
 
-LABEL maintainer="Rico Berger"
-LABEL git.url="https://github.com/ricoberger/script_exporter"
+LABEL maintainer="Nilay Parikh"
+LABEL git.url="https://github.com/nilayparikh/script_exporter"
 
 RUN apk add --no-cache --update curl ca-certificates
 
@@ -20,4 +20,4 @@ USER nobody
 COPY --from=build /build/bin/script_exporter /bin/script_exporter
 EXPOSE 9469
 
-ENTRYPOINT  [ "/bin/script_exporter" ]
+ENTRYPOINT  [ "/bin/script_exporter", "-config.file=/etc/script_exporter/config.yml" ]
