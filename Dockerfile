@@ -8,14 +8,10 @@ COPY . .
 RUN make build
 
 
-FROM alpine:3.10
+FROM microsoft/azure-cli
 
 LABEL maintainer="Nilay Parikh"
 LABEL git.url="https://github.com/nilayparikh/script_exporter"
-
-RUN apk add --no-cache --update curl ca-certificates
-
-USER nobody
 
 COPY --from=build /build/bin/script_exporter /bin/script_exporter
 EXPOSE 9469
